@@ -1,0 +1,170 @@
+*{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  box-sizing: border-box;
+  margin:0;
+  padding:0;
+}
+
+a{
+  text-decoration: none;
+}
+
+/* header styles */
+
+.hcover{
+ background-size:cover;
+ background-image: url('./images/bg.webp');
+ background-attachment: fixed;
+
+}
+.hcover .image-container{
+  width: 160px;
+  margin:auto;
+  padding: 3rem 0rem;
+}
+
+.image-container img{
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  margin:auto;
+}
+
+
+
+/* home component */
+
+.content-wrapper{
+  text-align: center;
+  padding:2% 0%;
+
+}
+ 
+.home h3{
+line-height: 40px;
+}
+
+
+.content-wrapper .flexer{
+  display:flex;
+  overflow-x: hidden;
+}
+
+.content-wrapper .box{
+  width: 260px;
+  height: auto;
+  border: 1px solid #aaa;
+}
+
+.flexer .box:not(:first-child){
+  margin-left: 5px;
+}
+
+
+.content-wrapper .box img{
+  width: 260px;
+  height: auto;
+}
+
+.content-wrapper .box img:hover{
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+
+.flexer .to-right{
+
+  position: absolute;
+  right:0;
+  bottom:0;
+}
+
+.to-right img{
+  margin-top: 1.5rem;
+  height: 100px;
+  width: 100px;
+  cursor: pointer;
+}
+
+.arrow-balence{
+  display:flex;
+}
+
+
+/* ===========  Portfolio  ================ */
+
+.card-detail{
+  text-align:left;
+  padding: 20px 0px;
+}
+
+
+/*  ============= About ================== */
+
+.about strong{
+  font-size: 2rem;
+}
+
+.follow{
+  padding: 3rem 0rem;
+}
+
+.follow a{
+  font-size: 1.5rem;
+  padding: 0rem 0.6rem;
+  color:red;
+}
+
+/* =============== contact  =================  */
+
+.contact{
+  padding: 3rem 0rem;
+}
+
+.contact a{
+  font-size: 1.5rem;
+  padding: 0.6rem 1rem;
+  color:red;
+  border:1px solid red;
+}
+
+.contact a:hover{
+  background: red;
+  color:#aaa;
+}
+
+
+/*  working with tabs */
+
+.tabs-container{
+  width: 50%;
+  margin:2rem auto;
+}
+
+.react-tabs__tab-list{
+  display:flex;
+}
+
+.react-tabs__tab{
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+
+@media screen and (max-width: 960px){
+  .tabs-container{
+    width: 95%;
+    
+  }
+
+  .react-tabs__tab-list{
+    display:flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+  }
+
+  
+}
+
