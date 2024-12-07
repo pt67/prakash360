@@ -3,7 +3,7 @@ import Php from '../../images/php.webp';
 import Nodejs from '../../images/nodejs.webp';
 import Python from '../../images/python.webp';
 import Rails from '../../images/rails.webp';
-import Arrow from '../../images/chevron-right.svg';
+//import Arrow from '../../images/chevron-right.svg';
 import pdata from './portfolio_data';
 
 
@@ -13,7 +13,7 @@ export default ()=>{
 const [showdat, setShowdat ] = useState();
 
 
-let meter = 10;
+//let meter = 10;
 
 
 function showPhp(e){
@@ -74,6 +74,7 @@ return (
 
 <div className="arrow-balence">
 
+<marquee behavior="alternate">
 <div className="flexer"> {/* ========= Flex started  */}
 
 <div className="box">
@@ -92,18 +93,9 @@ return (
     <img src={Rails} alt="img1" id="rails" onClick={ showRails }/>
 </div>
 </div>
-<div className="to-right">
-    <img src={ Arrow } onClick={            
-        (e)=>{
-          meter +=20;   
-          e.target.parentElement.parentElement.children[0].scrollLeft = meter;
+</marquee>
 
-          if(e.target.parentElement.parentElement.children[0].scrollLeftMax < meter){
-              e.target.hidden=true;
-          }
 
-    } } alt="chevron"/>
-</div>
 
 </div>
 

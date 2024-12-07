@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink, BrowserRouter as  Router } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter, faInstagram, faFacebook } from '@fortawesome/free-brands-svg-icons';
 
@@ -21,11 +20,11 @@ return (
 </p>
 
 <div className="follow">
-   <Router>
-       <NavLink to="\twitter.com/pt6765759" target="_blank"><FontAwesomeIcon icon={faTwitter} /></NavLink>
-       <NavLink to="\instagram.com/pnpbrother/" target="_blank"><FontAwesomeIcon icon={faInstagram} /></NavLink>
-       <NavLink to="\facebook.com/prakashinme" target="_blank"><FontAwesomeIcon icon={faFacebook} /></NavLink>
-   </Router> 
+   <div>
+       <a href="https://twitter.com/pt6765759" target="_blank"><FontAwesomeIcon icon={faTwitter} /></a>
+       <a href="https://instagram.com/pnpbrother/" target="_blank"><FontAwesomeIcon icon={faInstagram} /></a>
+       <a href="https://facebook.com/prakashinme" target="_blank"><FontAwesomeIcon icon={faFacebook} /></a>
+   </div> 
 </div>
 
 </div>
