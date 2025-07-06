@@ -1,21 +1,22 @@
 import React from "react";
 
-export default ()=>{
-
-return (
-
-
-<div className="content-wrapper home">
-
-
-<h1>Hi,</h1>
-<h3>This is Prakash</h3>
-<p>A Developer expertised by <strong>PHP</strong>, <strong>Python</strong>, <strong>Ruby</strong>, <strong>Nodejs</strong></p>
-
-</div>
-
-
-);
-
-
+export default function Home() {
+  return (
+    <section className="content-wrapper home modern-fadein">
+      <div className="hero">
+        <h1>
+          Welcome to <span className="highlight">prakash360</span>
+        </h1>
+        <p>
+          Hi, I’m Prakash — a creative web developer dedicated to building
+          beautiful, high-performance digital experiences. Explore my portfolio,
+          learn about my journey, and let’s create something extraordinary
+          together!
+        </p>
+        <a href="/portfolio" className="cta-btn">
+          View Portfolio
+        </a>
+      </div>
+    </section>
+  );
 }
