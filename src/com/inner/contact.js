@@ -12,7 +12,7 @@ return (
 
 <div className="contact">
 <div>
-    <a href="https://pph.me/pkdev " target="_blank">Get In Touch</a>
+    <a href="https://pph.me/pkdev " target="_blank" rel="noopener noreferrer">Get In Touch</a>
 </div>
 </div>
 
