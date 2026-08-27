@@ -1,6 +1,7 @@
 {
-  "short_name": "Prakash App",
-  "name": "Prakash webapp",
+  "short_name": "Prakash360",
+  "name": "Prakash360 - Freelance Full-Stack Developer",
+  "description": "Portfolio and services of Prakash, a freelance full-stack developer building web apps, APIs, e-commerce and automations.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -10,16 +11,33 @@
     {
       "src": "logo192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
       "src": "logo512.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ],
   "start_url": ".",
+  "scope": ".",
   "display": "standalone",
-  "theme_color": "#FF0000",
-  "background_color": "#ffffff"
+  "orientation": "portrait-primary",
+  "theme_color": "#0f1219",
+  "background_color": "#0f1219",
+  "categories": ["portfolio", "developer", "business"],
+  "shortcuts": [
+    {
+      "name": "Portfolio",
+      "url": "/portfolio",
+      "description": "View services I deliver"
+    },
+    {
+      "name": "Contact",
+      "url": "/contact",
+      "description": "Hire me for your project"
+    }
+  ]
 }

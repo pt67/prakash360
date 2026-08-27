@@ -1,77 +1,132 @@
-import React, { useState } from "react";
-import Php from '../../images/php.webp';
-import Nodejs from '../../images/nodejs.webp';
-import Python from '../../images/python.webp';
-import Rails from '../../images/rails.webp';
-import pdata from './portfolio_data';
+import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faLaptopCode, faServer, faCartShopping, faFileLines,
+  faBolt, faWrench, faArrowRight, faXmark, faStar
+} from '@fortawesome/free-solid-svg-icons';
+import projects from './portfolio_data';
+import Reveal from '../Reveal';
+
+const iconMap = {
+  faLaptopCode, faServer, faCartShopping, faFileLines, faBolt, faWrench,
+};
 
 const Portfolio = () => {
-    const [showdat, setShowdat] = useState(null);
+  const [active, setActive] = useState(null);
 
-    const handleShow = (type) => {
-        let title = null;
-        switch(type) {
-            case 'php':
-                title = pdata[0].php;
-                break;
-            case 'nodejs':
-                title = pdata[0].nodejs;
-                break;
-            case 'python':
-                title = pdata[0].python;
-                break;
-            case 'rails':
-                title = pdata[0].rails;
-                break;
-            default:
-                title = null;
-        }
-        setShowdat(title);
+  useEffect(() => {
+    if (!active) return;
+    const onKey = (e) => { if (e.key === 'Escape') setActive(null); };
+    document.addEventListener('keydown', onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prevOverflow;
     };
+  }, [active]);
 
-    const handleClose = () => setShowdat(null);
+  const handleGlow = (e) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    card.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+    card.style.setProperty('--my', `${e.clientY - rect.top}px`);
+  };
 
-    return (
-        <section className="content-wrapper portfolio modern-fadein" id="portfolio">
-            <h1>My Portfolio</h1>
-            <p className="portfolio-desc">
-                Explore a selection of my finest work, where innovation meets functionality. Click on a technology to discover the projects and solutions I’ve crafted with passion and precision.
-            </p>
-            <div className="tech-section">
-                <h2 className="tech-title">Technologies</h2>
-                <div className="arrow-balence">
-                    <div className="flexer scroll-x no-scrollbar tech-grid">
-                        <div className="box">
-                            <img src={Php} alt="PHP" id="php" onClick={() => handleShow('php')} />
-                            <span>PHP</span>
-                        </div>
-                        <div className="box">
-                            <img src={Nodejs} alt="Node.js" id="nodejs" onClick={() => handleShow('nodejs')} />
-                            <span>Node.js</span>
-                        </div>
-                        <div className="box">
-                            <img src={Python} alt="Python" id="python" onClick={() => handleShow('python')} />
-                            <span>Python</span>
-                        </div>
-                        <div className="box">
-                            <img src={Rails} alt="Rails" id="rails" onClick={() => handleShow('rails')} />
-                            <span>Rails</span>
-                        </div>
-                    </div>
-                </div>
+  return (
+    <section className="content-wrapper portfolio modern-fadein" id="portfolio">
+      <div className="section-head">
+        <span className="eyebrow">What I Do</span>
+        <h1>Services I Deliver</h1>
+        <p className="portfolio-desc">
+          As a freelance full-stack developer, I partner with you end-to-end —
+          from the first wireframe to launch and beyond. Explore the modules
+          below and click any card to see exactly what's included.
+        </p>
+      </div>
+
+      <div className="bento-grid">
+        {projects.map((p, i) => (
+          <Reveal key={p.id} delay={i * 80}>
+            <article
+              className={`bento-card ${p.id}`}
+              onClick={() => setActive(p)}
+              tabIndex={0}
+              role="button"
+              aria-label={p.title}
+              onMouseMove={handleGlow}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setActive(p);
+                }
+              }}
+            >
+              <div className="bento-icon">
+                <FontAwesomeIcon icon={iconMap[p.icon]} />
+              </div>
+              <span className="bento-cat">{p.category}</span>
+              <h3>{p.title}</h3>
+              <p className="bento-tagline">{p.tagline}</p>
+              <div className="bento-cta">
+                View details <FontAwesomeIcon icon={faArrowRight} />
+              </div>
+            </article>
+          </Reveal>
+        ))}
+      </div>
+
+      {active && (
+        <div
+          className="modal-overlay"
+          onClick={() => setActive(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={active.title}
+        >
+          <div className="modal-content service-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setActive(null)} aria-label="Close">
+              <FontAwesomeIcon icon={faXmark} />
+            </button>
+
+            <div className="service-modal-head">
+              <div className="bento-icon large">
+                <FontAwesomeIcon icon={iconMap[active.icon]} />
+              </div>
+              <div>
+                <span className="bento-cat">{active.category}</span>
+                <h2>{active.title}</h2>
+                <p className="service-tagline">{active.tagline}</p>
+              </div>
             </div>
-            {/* Modal */}
-            {showdat && (
-                <div className="modal-overlay" onClick={handleClose}>
-                    <div className="modal-content" onClick={e => e.stopPropagation()}>
-                        <button className="modal-close" onClick={handleClose}>&times;</button>
-                        <h2>{showdat.title}</h2>
-                        <p>{showdat.description}</p>
-                    </div>
-                </div>
-            )}
-        </section>
-    );
+
+            <p className="service-desc">{active.description}</p>
+
+            <div className="service-tech">
+              {active.tech.map((t) => <span key={t} className="skill-chip">{t}</span>)}
+            </div>
+
+            <ul className="service-list">
+              {active.highlights.map((h) => (
+                <li key={h}>
+                  <FontAwesomeIcon icon={faStar} className="star" /> {h}
+                </li>
+              ))}
+            </ul>
+
+            <div className="service-footer">
+              <span className="deliverables">
+                <strong>Deliverables:</strong> {active.deliverables}
+              </span>
+              <a href="/contact" className="modal-link">
+                Start a project <FontAwesomeIcon icon={faArrowRight} />
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+    </section>
+  );
 };
 
 export default Portfolio;
